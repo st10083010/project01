@@ -43,8 +43,15 @@ def showIkea():
     column = ['_id', 'name', 'id', 'price', 'URL', 'imgPath']
     return render_template('showIkea.html', ikeaData=ikeaData,
                                               column=column)
-
 # 用函數呼叫MODEL 把MySQL欄位資料拿出來
+
+@app.route('/showPinkoi')
+def showPinkoi():
+    pinkoiData = model.getStaff()
+    column = ['_id', 'name', 'id', 'price', 'URL', 'imgPath']
+    return render_template('showPinkoi.html', pinkoiData=pinkoiData, column=column)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
