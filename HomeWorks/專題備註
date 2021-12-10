@@ -1,0 +1,39 @@
+MongoDB啟動路徑
+1.打開CMD，輸入 cd "C:\Users\TibeMe_user\mongodb-win32-x86_64-windows-5.0.3\bin"
+2.先進入mongod.exe，所以輸入
+mongod.exe --dbpath "C:\Users\TibeMe_user\mongodb-win32-x86_64-windows-5.0.3\bin"
+
+3.再打開CMD，輸入 cd "C:\Users\TibeMe_user\mongodb-win32-x86_64-windows-5.0.3\bin"
+4.輸入mongo.exe
+
+---
+filename = "".join(i for i in pathTest if i not in '\/:*?<>"|')
+print(filename)
+# 去掉WINDOWS的非法字元(檔名)
+
+---
+進度:
+裡面有表格的資料(MYSQL)
+https://linuxpip.org/json-eof-fix/
+
+MongoDB資料匯出匯入參考:
+https://iter01.com/176368.html
+
+桶子:ikea、pinkoi
+
+MySQL資料匯入:
+把mongoDB輸出出來的JSON檔案，對著建好的table按右鍵匯入
+---
+css table 可以研究一下W3Schools、bootstrap
+---
+POWER BI 資料視覺化
+伺服器:127.0.0.1:3306
+輸入要匯入的DATABASE
+不使用預設設定，輸入帳號密碼(MySQL)
+---
+ikeaVer10進度:
+
+只剩把資料重新塞進mongoDB -> MySQL -> FLASK -> OK
+
+mongoexport -d pinkoi -c pinkoi -o "C:\Users\TibeMe_user\Desktop\pinkoiJson2.json" -f "_id,name,productID,price,URL,imgPath" --jsonArray
+

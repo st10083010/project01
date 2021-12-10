@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ikeaInformation</title>
+</head>
+<body>
+<div>
+    <table border="1" width="1700">
+        <thead>
+            <tr>
+                {% for c in column %}
+                <th>
+                    {{ c }}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in ikeaData %}
+            <tr>
+                {% for emp_info in emp %}
+                <td>
+                    {{ emp_info }}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
