@@ -1,7 +1,7 @@
 #Ikea ver.10 2021/12/08
 #IKEA爬蟲評分程式 ->
 
-import requests, json, time ,os
+import requests, json, time ,os , re
 from bs4 import BeautifulSoup
 from urllib import request
 from pymongo import MongoClient
@@ -20,8 +20,8 @@ url = 'https://www.ikea.com.tw/zh/products/home-decoration/vases-bowls-and-acces
 
 page = 1
 folderPath = './/ikeaPhoto'
-if not os.path.exists(folderPath):
-    os.mkdir(folderPath)
+# if not os.path.exists(folderPath):
+#     os.mkdir(folderPath)
 
 # vaseInforList2 = [] # 存放單筆篩選過的資料(DICT)
 # vaseImgUrlList = [] # 圖片網址
@@ -41,8 +41,10 @@ for i in range(0,2):
         vaseUrlRes = requests.get(vaseURL, headers=headers)
         vaseSoup = BeautifulSoup(vaseUrlRes.text, 'html.parser')
 
-        vaseSold = soup.select('p[class="partNumber"]')
-        print(vaseSold)
+        vaseSold = soup.select('div[class="itemInfo mt-4"]')
+        vaseSold2 = re.findall('<p>(.*?)</p>', vaseSoup.contents.decode('utf-8'), re.S)
+        print(vaseSold2)
+        print('='*10)
 
 # try:
 #     for vaseInfor3 in vaseInforList2:
