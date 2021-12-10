@@ -1,14 +1,14 @@
 from flask import Flask, request, render_template, url_for
 # import seriesFunction as s
 import model
-import mySQL_infor
+import Mysql_pwd
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_url_path='/static/css/style.css')
 # , static_url_path='/source', static_folder='./static' -> 當不想把static寫進網址時，可以上面那行的參數加上這串就可以更改名稱(/source)
 # 預設都會是static
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = mySQL_infor.pwd["pwd"]
+app.config['SQLALCHEMY_DATABASE_URI'] = Mysql_pwd.pwd["pwd"]
 db = SQLAlchemy(app)
 
 class Item(db.Model):
