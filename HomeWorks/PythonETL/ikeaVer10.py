@@ -113,5 +113,3 @@ for vaseInfor3 in vaseInforList2:
 end = time.time()
 spendTime = end - start
 print('花費時間: ' + str(spendTime) + '秒')
-
-print("123")
