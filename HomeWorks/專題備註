@@ -13,6 +13,10 @@ print(filename)
 
 ---
 進度:
+把視覺化資料丟上網站，研究GCP/AWS
+在自己的專案開發trend.html，然後丟到/desktop/FindGoods-web，再用GIT處理
+爬蟲要再抓評分
+
 裡面有表格的資料(MYSQL)
 https://linuxpip.org/json-eof-fix/
 
