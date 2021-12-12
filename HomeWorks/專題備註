@@ -13,7 +13,8 @@ print(filename)
 
 ---
 進度:
-把視覺化資料丟上網站，研究GCP/AWS
+已把MySQL workbench連結到GCP
+剩下建立報表，將視覺化資料寫入網頁
 在自己的專案開發trend.html，然後丟到/desktop/FindGoods-web，再用GIT處理
 爬蟲要再抓評分
 
