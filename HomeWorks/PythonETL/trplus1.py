@@ -1,8 +1,10 @@
 # #專題ver.6 2021/11/21
 # #特力家 爬蟲
 # # 把商品網址加進去itemInfor3，再轉成list，最後放進PYMONGO
-import requests, json, time ,os , re
+import requests, json ,os , re , time
 from bs4 import BeautifulSoup
+from time import sleep
+from tqdm import tqdm, trange
 from urllib import request
 from pymongo import MongoClient
 import pymongo
@@ -18,14 +20,16 @@ headers = {"User-Agent": userAgent}
 
 url = 'https://www.trplus.com.tw/search/?q=%E8%8A%B1%E7%93%B6&bwq=&sort=&page={}'
 
+
+
 page = 1
 folderPath = './/trplusPhoto'
 if not os.path.exists(folderPath):
     os.mkdir(folderPath)
 
-vaseInforList2 = [] # 存放單筆篩選過的資料(DICT)
+vaseInforList2 = [] # 存放篩選過的資料(DICT)
 vaseLinkList = [] # 商品網址列表
-vaseImgUrlList = [] # 圖片網址
+
 idNumber = 0
 
 for i in range(0, 2): # 頁數
@@ -42,7 +46,7 @@ for i in range(0, 2): # 頁數
 
 #-------------------------------------
 
-for vaseInforLink in vaseLinkList:
+for vaseInforLink in tqdm(vaseLinkList):
     itemDict = {'_id': None , 'name': None, 'productID': None, 'price': None, 'URL': None, 'imgPath': None} # 單筆商品資訊(dict)
 
     itemRes = requests.get(vaseInforLink, headers=headers)
@@ -60,26 +64,24 @@ for vaseInforLink in vaseLinkList:
     price = re.sub(r"^\s+|\s+$", "", itemSoup.select('td')[0].text.replace(',' , "").replace('$' , ""))
     itemDict['price'] = price
 
-    imgURL = itemSoup.select('img[class="image_fade"]')
+    productID = vaseInforLink.split('/')[-1]
+    itemDict['productID'] = productID
 
+    vaseImgUrlList = []  # 圖片網址
+
+    imgURL = itemSoup.select('img[class="image_fade"]')
     for imgURL2 in imgURL: # 用LIST取值的方式將網址取出
-        imgURL3 = imgURL2['src'].replace('96x96' , '300x300')
-        print(imgURL3)
-        print('='*10)
+        imgURL3 = imgURL2['src'].replace('96x96' , '300x300') # 更改解析度
+        vaseImgUrlList.append(imgURL3)
+        # print(imgURL3)
+        # print('='*10)
         # print(len('000000000014297487'))
 
+    vaseInforList2.append(itemDict) # 將資料整合
 
 
-    # print(idNumber , "-" , )
-    # print(type(price))
-    # print(itemDict)
-    # print('='*10)
-
-
-
-
-
-
+    sleep(0.01)
+print(vaseInforList2)
 
 end = time.time()
 spendTime = end - start
