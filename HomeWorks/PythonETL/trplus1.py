@@ -76,11 +76,25 @@ for vaseInforLink in tqdm(vaseLinkList):
         # print(imgURL3)
         # print('='*10)
         # print(len('000000000014297487'))
-
+        # request.urlretrieve(圖片網址, 圖片路徑) # 要抓圖片再打開
     vaseInforList2.append(itemDict) # 將資料整合
 
 
     sleep(0.01)
+
+#------------------------------------
+# try:
+#     for itemDict in vaseInforList2:
+#         result = collection.insert_one(itemDict)
+#         print(itemDict)
+#         print("=" *10)
+#         print('已新增: ' , itemDict)
+#
+# except pymongo.errors.DuplicateKeyError as err_name:
+#     print(err_name)
+#     print("已經存在 productID: " , itemDict['productID'], "，因此不寫入。")
+    #要放進mongoDB再用
+
 print(vaseInforList2)
 
 end = time.time()
