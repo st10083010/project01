@@ -43,7 +43,7 @@ for i in range(0, 2): # 頁數
 #-------------------------------------
 
 for vaseInforLink in vaseLinkList:
-    itemDict = {'_id': None , 'name': None, 'id': None, 'price': None, 'URL': None, 'imgPath': None} # 單筆商品資訊(dict)
+    itemDict = {'_id': None , 'name': None, 'productID': None, 'price': None, 'URL': None, 'imgPath': None} # 單筆商品資訊(dict)
 
     itemRes = requests.get(vaseInforLink, headers=headers)
     itemSoup = BeautifulSoup(itemRes.text, 'html.parser')
@@ -51,13 +51,29 @@ for vaseInforLink in vaseLinkList:
     idNumber += 1
     itemDict['_id'] = idNumber
 
+    itemDict['URL'] = vaseInforLink
+
+    itemName = re.sub(r"^\s+|\s+$", "", itemSoup.select('div[class="info__name prod_GDNM"]')[0].text)
+    itemName2 = "".join(i for i in itemName if i not in '\/:*?<>"|') # 去掉非法字元
+    itemDict['name'] = itemName2
+
     price = re.sub(r"^\s+|\s+$", "", itemSoup.select('td')[0].text.replace(',' , "").replace('$' , ""))
     itemDict['price'] = price
 
-    # print(idNumber , "-" , price)
+    imgURL = itemSoup.select('img[class="image_fade"]')
+
+    for imgURL2 in imgURL: # 用LIST取值的方式將網址取出
+        imgURL3 = imgURL2['src'].replace('96x96' , '300x300')
+        print(imgURL3)
+        print('='*10)
+        # print(len('000000000014297487'))
+
+
+
+    # print(idNumber , "-" , )
     # print(type(price))
-    print(itemDict)
-    print('='*10)
+    # print(itemDict)
+    # print('='*10)
 
 
 
