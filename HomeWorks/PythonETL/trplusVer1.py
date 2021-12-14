@@ -1,6 +1,5 @@
-# #專題ver.6 2021/11/21
-# #特力家 爬蟲
-# # 把商品網址加進去itemInfor3，再轉成list，最後放進PYMONGO
+# #特力家 爬蟲 -> 完成
+# # 進入網頁，接著進入第一個商品，獲取資料後退出網頁，循環
 import requests, json ,os , re , time
 from bs4 import BeautifulSoup
 from time import sleep
@@ -11,15 +10,15 @@ import pymongo
 
 # connection = MongoClient(host='localhost', port=27017)
 # db = connection.ikea
-# collection = db['ikea']
+# collection = db['trplus']
 # print("collection: " , collection)
+
 start = time.time()
 
 userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40"
 headers = {"User-Agent": userAgent}
 
 url = 'https://www.trplus.com.tw/search/?q=%E8%8A%B1%E7%93%B6&bwq=&sort=&page={}'
-
 
 
 page = 1
@@ -67,22 +66,25 @@ for vaseInforLink in tqdm(vaseLinkList):
     productID = vaseInforLink.split('/')[-1]
     itemDict['productID'] = productID
 
-    vaseImgUrlList = []  # 圖片網址
+    imgNumber = 0
 
     imgURL = itemSoup.select('img[class="image_fade"]')
     for imgURL2 in imgURL: # 用LIST取值的方式將網址取出
+        imgNumber += 1
         imgURL3 = imgURL2['src'].replace('96x96' , '300x300') # 更改解析度
-        vaseImgUrlList.append(imgURL3)
-        # print(imgURL3)
-        # print('='*10)
-        # print(len('000000000014297487'))
-        # request.urlretrieve(圖片網址, 圖片路徑) # 要抓圖片再打開
-    vaseInforList2.append(itemDict) # 將資料整合
+        imgName = itemName2 + "_{}_{}.{}".format(itemDict['productID'], imgNumber , imgURL3.split('.')[-1])
+        # request.urlretrieve(imgURL3, filename=folderPath + "//" + imgName) # 要抓圖片再打開
 
+    imgPath = folderPath + "//"+ imgName
+    itemDict['imgPath'] = imgPath
+
+    vaseInforList2.append(itemDict) # 將資料整合
 
     sleep(0.01)
 
 #------------------------------------
+# print(vaseInforList2) # 檢查資料
+
 # try:
 #     for itemDict in vaseInforList2:
 #         result = collection.insert_one(itemDict)
@@ -93,9 +95,9 @@ for vaseInforLink in tqdm(vaseLinkList):
 # except pymongo.errors.DuplicateKeyError as err_name:
 #     print(err_name)
 #     print("已經存在 productID: " , itemDict['productID'], "，因此不寫入。")
-    #要放進mongoDB再用
+#     #要放進mongoDB再用
 
-print(vaseInforList2)
+
 
 end = time.time()
 spendTime = end - start
