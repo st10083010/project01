@@ -3,6 +3,8 @@
 
 import requests, json, time ,os , re
 from bs4 import BeautifulSoup
+from tqdm import tqdm, trange
+from time import sleep
 from urllib import request
 from pymongo import MongoClient
 import pymongo
@@ -19,7 +21,7 @@ headers = {"User-Agent": userAgent}
 url = 'https://www.ikea.com.tw/zh/products/home-decoration/vases-bowls-and-accessories?&&page={}'
 
 page = 1
-folderPath = './/ikeaPhoto'
+# folderPath = './/ikeaPhoto'
 # if not os.path.exists(folderPath):
 #     os.mkdir(folderPath)
 
@@ -31,20 +33,25 @@ for i in range(0,2):
     res = requests.get(url.format(page), headers=headers)
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    vaseInforList = soup.select('div[class="itemInfo mt-4"]')
+    vaseInforList = soup.select('div[class="card-header"]')
 
     for vaseInfor in vaseInforList:
-        vaseInfor2 = vaseInfor.input['value']
-        vaseURL = 'https://www.ikea.com.tw/' + vaseInfor.a['href']  # 商品網址
-        # print(vaseURL)
+        vaseInfor2 = vaseInfor.a['href']
+        if vaseInfor2.split('-')[-1] == str(80257609): # 過濾掉資料有問題的商品
+            pass
+        else:
+            vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'AvgScore': None, 'comments': None,
+                        'sales': None}
+            vaseURL = 'https://www.ikea.com.tw' + vaseInfor.a['href']  # 商品網址
+            vaseUrlRes = requests.get(vaseURL, headers=headers)
+            vaseSoup = BeautifulSoup(vaseUrlRes.text, 'html.parser')
 
-        vaseUrlRes = requests.get(vaseURL, headers=headers)
-        vaseSoup = BeautifulSoup(vaseUrlRes.text, 'html.parser')
-
-        vaseSold = soup.select('div[class="itemInfo mt-4"]')
-        vaseSold2 = re.findall('<p>(.*?)</p>', vaseSoup.contents.decode('utf-8'), re.S)
-        print(vaseSold2)
-        print('='*10)
+        # vaseSold = soup.select('div[class="itemInfo mt-4"]')
+        # vaseSold2 = re.findall('<p>(.*?)</p>', vaseSoup.contents.decode('utf-8'), re.S)
+        # print(vaseSold)
+        # print('='*10)
+    page += 1
+    print("------此頁面結束------")
 
 # try:
 #     for vaseInfor3 in vaseInforList2:
