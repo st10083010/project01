@@ -26,23 +26,22 @@ folderPath = './/ikeaPhoto'
 # if not os.path.exists(folderPath):
 #     os.mkdir(folderPath)
 
-# vaseInforList2 = [] # 存放單筆篩選過的資料(DICT)
+vaseRatingList = [] # 存放單筆篩選過的資料(DICT)
 # vaseImgUrlList = [] # 圖片網址
 idNumber = 0
 
-for i in range(0,2):
+for i in trange(0,2):
     res = requests.get(url.format(page), headers=headers)
     soup = BeautifulSoup(res.text, 'html.parser')
 
     vaseInforList = soup.select('div[class="card-header"]')
 
-    for vaseInfor in vaseInforList:
+    for vaseInfor in tqdm(vaseInforList):
         vaseInfor2 = vaseInfor.a['href']
         if vaseInfor2.split('-')[-1] == str(80257609): # 過濾掉資料有問題的商品
             pass
         else:
-            vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'AvgScore': None, 'comments': None,
-                        'sales': None}
+            vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'sales': None , 'AvgRating': None, 'comments': None}
             vaseURL = 'https://www.ikea.com.tw' + vaseInfor.a['href']  # 商品網址
             vaseScor['itemURL'] = vaseURL
             vaseScor['itemID'] = vaseURL.split('-')[-1]
@@ -54,19 +53,31 @@ for i in range(0,2):
             vaseName2 = "".join(i for i in vaseName if i not in '\/:*?<>"|') + "_{}".format(vaseURL.split('-')[-1]) # 去掉非法字元
             vaseScor['itemName'] = vaseName2
 
+            averageScoreJsonUrl = 'https://display.powerreviews.com/m/43967/l/zh_TW/product/{}/reviews?apikey=1e9ad068-6739-4743-921c-7433b46b48ff&_noconfig=true'
+            # 抓JSON格式
+            avgScoJsonUrlRes = requests.get(averageScoreJsonUrl.format(vaseScor['itemID']))
+            aSJURT = json.loads(avgScoJsonUrlRes.text)
 
-            sales = vaseSoup.select('p[class="partNumber"]') #有抓到購買人數
+            sales = vaseSoup.select('p[class="partNumber"]') #抓購買人數(售出)
             try:
-                print(vaseScor['itemURL'])
-                print(sales[1].text)
-            # print(vaseScor)
+                vaseScor['sales'] = sales[1].text.split(" ")[0]
+                vaseScor['AvgRating'] = aSJURT['results'][0]['rollup']['average_rating']
+                vaseScor['comments'] = aSJURT['results'][0]['rollup']['native_review_count']
             except IndexError:
-                print("0 人已購買此產品")
+                vaseScor['sales'] = 0
+                vaseScor['AvgRating'] = 0
+                vaseScor['comments'] = 0
+            except KeyError:
+                vaseScor['AvgRating'] = 0
+                vaseScor['comments'] = 0
 
-            print('='*10)
+            vaseRatingList.append(vaseScor)
+            # print(vaseScor)
+            # print('='*10)
 
     page += 1
-    print("------此頁面結束------")
+    print("------第" + str(page) + "頁 結束------")
+print(vaseRatingList)
 
 # try:
 #     for vaseInfor3 in vaseInforList2:
@@ -79,8 +90,6 @@ for i in range(0,2):
 #     print(err_name)
 #     print("已經存在 id: " , vaseInfor3['id'], "，因此不寫入。")
     #要放進mongoDB再用
-
-
 
 end = time.time()
 spendTime = end - start
