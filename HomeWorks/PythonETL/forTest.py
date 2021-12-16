@@ -1,5 +1,5 @@
 # 爬蟲範本
-import requests, json, time ,os , re
+import requests, json, time ,os , re , random
 from bs4 import BeautifulSoup
 from tqdm import tqdm, trange
 from time import sleep
@@ -21,6 +21,13 @@ url = 'https://www.ikea.com.tw/zh/products/home-decoration/vases-bowls-and-acces
 
 page = 1
 folderPath = ''
+
+# 隨機加權比例 資料參考:https://www.delftstack.com/zh-tw/howto/python/python-weighted-random/
+for i in range(0,10):
+    a = random.randint(0 , 100)
+    b = random.randint(100-a , 100)
+    print("a = ", a , "; b = ", b)
+
 # if not os.path.exists(folderPath):
 #     os.mkdir(folderPath)
 

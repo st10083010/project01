@@ -41,7 +41,7 @@ for i in trange(0,2):
         if vaseInfor2.split('-')[-1] == str(80257609): # 過濾掉資料有問題的商品
             pass
         else:
-            vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'sales': None , 'AvgRating': None, 'comments': None}
+            vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'sales': None , 'AvgRating': None, 'totalReviews': None}
             vaseURL = 'https://www.ikea.com.tw' + vaseInfor.a['href']  # 商品網址
             vaseScor['itemURL'] = vaseURL
             vaseScor['itemID'] = vaseURL.split('-')[-1]
@@ -62,14 +62,14 @@ for i in trange(0,2):
             try:
                 vaseScor['sales'] = sales[1].text.split(" ")[0]
                 vaseScor['AvgRating'] = aSJURT['results'][0]['rollup']['average_rating']
-                vaseScor['comments'] = aSJURT['results'][0]['rollup']['native_review_count']
+                vaseScor['totalReviews'] = aSJURT['results'][0]['rollup']['native_review_count']
             except IndexError:
                 vaseScor['sales'] = 0
                 vaseScor['AvgRating'] = 0
-                vaseScor['comments'] = 0
+                vaseScor['totalReviews'] = 0
             except KeyError:
                 vaseScor['AvgRating'] = 0
-                vaseScor['comments'] = 0
+                vaseScor['totalReviews'] = 0
 
             vaseRatingList.append(vaseScor)
             # print(vaseScor)
@@ -77,6 +77,8 @@ for i in trange(0,2):
 
     page += 1
     print("------第" + str(page) + "頁 結束------")
+    
+# 檢查資料
 print(vaseRatingList)
 
 # try:

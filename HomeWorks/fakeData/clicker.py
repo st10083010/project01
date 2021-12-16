@@ -1,19 +1,19 @@
 # 點擊率產生器
 import json , random , csv
 
-file = "C:\\Users\\TibeMe_user\\Desktop\\臨時用\\click.json"
+file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\click.json"
 
 click = []
 
 for i in range(0,100):
     clickDict = {}
-    random1 = random.randint(0, 2500)
-    random2 = random.randint(0, 2500)
-    random3 = random.randint(0, 2500)
-    random4 = random.randint(0, 2500)
-    random5 = random.randint(0, 2500)
-    random6 = random.randint(0, 2500)
-    random7 = random.randint(0, 2500)
+    random1 = random.randint(0, 250)
+    random2 = random.randint(0, 250)
+    random3 = random.randint(0, 250)
+    random4 = random.randint(0, 250)
+    random5 = random.randint(0, 250)
+    random6 = random.randint(0, 250)
+    random7 = random.randint(0, 250)
     clickDict['userID'] = "2021" + str(i).zfill(4)
     clickDict['相框'] = random1
     clickDict['椅凳'] = random2
@@ -23,14 +23,11 @@ for i in range(0,100):
     clickDict['花瓶'] = random6
     clickDict['馬克杯'] = random7
 
-    # print(clickDict)
-    # print("="*10)
-    # if (clickDict['uesrID'] != clickDict['userID']) and clickDict not in click :
     if clickDict in click:
         pass
     else:
         click.append(clickDict)
-print("click len: ", len(click))
+print("click lens: ", len(click))
 print(click)
 
 
