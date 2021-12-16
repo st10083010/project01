@@ -55,10 +55,15 @@ for i in range(0,2):
             vaseScor['itemName'] = vaseName2
 
 
-            # sales = vaseSoup.select('p[class="partNumber"]') #有抓到購買人數
-            # print(sales)
-        print(vaseScor)
-        print('='*10)
+            sales = vaseSoup.select('p[class="partNumber"]') #有抓到購買人數
+            try:
+                print(vaseScor['itemURL'])
+                print(sales[1].text)
+            # print(vaseScor)
+            except IndexError:
+                print("0 人已購買此產品")
+
+            print('='*10)
 
     page += 1
     print("------此頁面結束------")
