@@ -13,6 +13,7 @@ import pymongo
 # db = connection.ikea
 # collection = db['ikea']
 # print("collection: " , collection)
+
 start = time.time()
 
 userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40"
@@ -21,7 +22,7 @@ headers = {"User-Agent": userAgent}
 url = 'https://www.ikea.com.tw/zh/products/home-decoration/vases-bowls-and-accessories?&&page={}'
 
 page = 1
-# folderPath = './/ikeaPhoto'
+folderPath = './/ikeaPhoto'
 # if not os.path.exists(folderPath):
 #     os.mkdir(folderPath)
 
@@ -43,13 +44,22 @@ for i in range(0,2):
             vaseScor = {'itemName': None, 'itemID': None, 'itemURL': None, 'AvgScore': None, 'comments': None,
                         'sales': None}
             vaseURL = 'https://www.ikea.com.tw' + vaseInfor.a['href']  # 商品網址
+            vaseScor['itemURL'] = vaseURL
+            vaseScor['itemID'] = vaseURL.split('-')[-1]
+
             vaseUrlRes = requests.get(vaseURL, headers=headers)
             vaseSoup = BeautifulSoup(vaseUrlRes.text, 'html.parser')
 
-        # vaseSold = soup.select('div[class="itemInfo mt-4"]')
-        # vaseSold2 = re.findall('<p>(.*?)</p>', vaseSoup.contents.decode('utf-8'), re.S)
-        # print(vaseSold)
-        # print('='*10)
+            vaseName = vaseSoup.select('h1[class="itemFacts font-weight-normal"]')[0].text
+            vaseName2 = "".join(i for i in vaseName if i not in '\/:*?<>"|') + "_{}".format(vaseURL.split('-')[-1]) # 去掉非法字元
+            vaseScor['itemName'] = vaseName2
+
+
+            # sales = vaseSoup.select('p[class="partNumber"]') #有抓到購買人數
+            # print(sales)
+        print(vaseScor)
+        print('='*10)
+
     page += 1
     print("------此頁面結束------")
 

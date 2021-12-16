@@ -8,10 +8,10 @@ from pymongo import MongoClient
 import pymongo
 
 
-connection = MongoClient(host='localhost', port=27017)
-db = connection.pinkoi
-collection = db['pinkoi']
-print("collection: " , collection)
+# connection = MongoClient(host='localhost', port=27017)
+# db = connection.pinkoi
+# collection = db['pinkoi']
+# print("collection: " , collection)
 
 start = time.time()
 
@@ -25,8 +25,8 @@ idNumber = 1
 
 
 folderPath = './/pinkoiPhoto'
-if not os.path.exists(folderPath):
-    os.mkdir(folderPath)
+# if not os.path.exists(folderPath): # 存取圖片，要用再打開
+#     os.mkdir(folderPath)
 
 itemInforList = [] # 多筆篩選後的資料
 

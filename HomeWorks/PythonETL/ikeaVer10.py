@@ -7,10 +7,11 @@ from urllib import request
 from pymongo import MongoClient
 import pymongo
 
-connection = MongoClient(host='localhost', port=27017)
-db = connection.ikea
-collection = db['ikea']
-print("collection: " , collection)
+# connection = MongoClient(host='localhost', port=27017)
+# db = connection.ikea
+# collection = db['ikea']
+# print("collection: " , collection)
+
 start = time.time()
 
 userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40"
@@ -20,8 +21,8 @@ url = 'https://www.ikea.com.tw/zh/products/home-decoration/vases-bowls-and-acces
 
 page = 1
 folderPath = './/ikeaPhoto'
-if not os.path.exists(folderPath):
-    os.mkdir(folderPath)
+# if not os.path.exists(folderPath):
+#     os.mkdir(folderPath)
 
 vaseInforList2 = [] # 存放單筆篩選過的資料(DICT)
 vaseImgUrlList = [] # 圖片網址

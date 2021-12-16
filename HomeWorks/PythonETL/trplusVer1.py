@@ -8,10 +8,10 @@ from urllib import request
 from pymongo import MongoClient
 import pymongo
 
-connection = MongoClient(host='localhost', port=27017)
-db = connection.trplus
-collection = db['trplus']
-print("collection: " , collection)
+# connection = MongoClient(host='localhost', port=27017)
+# db = connection.trplus
+# collection = db['trplus']
+# print("collection: " , collection)
 
 start = time.time()
 
@@ -23,8 +23,8 @@ url = 'https://www.trplus.com.tw/search/?q=%E8%8A%B1%E7%93%B6&bwq=&sort=&page={}
 
 page = 1
 folderPath = './/trplusPhoto'
-if not os.path.exists(folderPath):
-    os.mkdir(folderPath)
+# if not os.path.exists(folderPath): # 存取圖片，要存再打開
+#     os.mkdir(folderPath)
 
 vaseInforList2 = [] # 存放篩選過的資料(DICT)
 vaseLinkList = [] # 商品網址列表
@@ -85,16 +85,16 @@ for vaseInforLink in tqdm(vaseLinkList):
 #------------------------------------
 # print(vaseInforList2) # 檢查資料
 
-try:
-    for itemDict in vaseInforList2:
-        result = collection.insert_one(itemDict)
-        print(itemDict)
-        print("=" *10)
-        print('已新增: ' , itemDict)
-
-except pymongo.errors.DuplicateKeyError as err_name:
-    print(err_name)
-    print("已經存在 productID: " , itemDict['productID'], "，因此不寫入。")
+# try:
+#     for itemDict in vaseInforList2:
+#         result = collection.insert_one(itemDict)
+#         print(itemDict)
+#         print("=" *10)
+#         print('已新增: ' , itemDict)
+#
+# except pymongo.errors.DuplicateKeyError as err_name:
+#     print(err_name)
+#     print("已經存在 productID: " , itemDict['productID'], "，因此不寫入。")
 #     #要放進mongoDB再用
 
 
