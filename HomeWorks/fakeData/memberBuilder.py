@@ -1,4 +1,5 @@
 # 會員資料產生器
+# 完全隨機生成
 import json , random , csv
 
 file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\member.json"
