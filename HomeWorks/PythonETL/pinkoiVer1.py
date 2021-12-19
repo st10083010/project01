@@ -49,14 +49,15 @@ for i in range(0,3):
             idNumber += 1
 
             #
-            # print("編號: ", itemInforDict['_id'])
-            # print("商品名稱: ", itemInforDict['name'])
-            # print("商品編號: ", itemInforDict['productID'])
-            # print("商品價格: ", itemInforDict['offers']['price'])
-            # print("商品連結: ", itemInforDict['offers']['url'])
-            # print("存放路徑: ", folderPath + "//" + itemPath + "_{}.{}".format(itemInforDict['productID'], imgFormat.split(".")[-1]))
+            print("編號: ", itemInforDict['_id'])
+            print("商品名稱: ", itemInforDict['name'])
+            print("商品編號: ", itemInforDict['productID'])
+            print("商品價格: ", itemInforDict['offers']['price'])
+            print("商品連結: ", itemInforDict['offers']['url'])
+            print("存放路徑: ", folderPath + "//" + itemPath + "_{}.{}".format(itemInforDict['productID'], imgFormat.split(".")[-1]))
 
-            # print("商品圖片: ", imgFormat) # itemInforDict['image']
+            print("商品圖片: ", imgFormat) # itemInforDict['image']
+            print('='*10)
             # request.urlretrieve(imgFormat, imgPathName) # 要抓圖片再打開
 
             newItemInforDict['_id'] = itemInforDict['_id'] # 編號
