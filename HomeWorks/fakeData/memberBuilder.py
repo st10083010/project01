@@ -10,13 +10,21 @@ sex = ['Male', 'Female']
 
 for i in range(1,101):
     member = {'userID': None, 'Sex': None, 'Age': None, 'Area': None, 'Career': None}
-    member['userID'] = "2021" + str(i).zfill(4)
+
     sexSelector = random.choice(sex)
     ageSelector = random.randint(15,85)
     areaSelector = random.choice(area)
 
-    # print(clickDict)
-    # print('='*10)
+
+
+# #------------------------------------------
+    member['userID'] = "2021" + str(i).zfill(4)
+    member['Sex'] = sexSelector
+    member['Age'] = ageSelector
+    member['Area'] = areaSelector
+# #------------------------------------------
+    print(member)
+    print('='*10)
 
 
     if member in membersData:
