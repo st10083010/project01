@@ -77,24 +77,30 @@ for idx1 , vaseImgUrl2 in enumerate(vaseImgUrlList): # 組合圖片+其他資料
             vaseInfor3['imgPath'] = vasePath
             vaseInfor3['imgURL'] = vaseImgUrl2
 
+            # imgAnotherNamePath = folderPath + "//ikeaVASE_{}.{}".format(vaseInfor3['id'], vaseImgUrl2.split('.')[-1]) # 圖片檔名+路徑(訓練用圖片檔名)
+            # vaseInfor3['ForTrainNamePath'] = imgAnotherNamePath # 臨時用
 
-# 檢查資料用
-for vaseInfor3 in vaseInforList2:
-    idNumber += 1
-    vaseInfor3['_id'] = idNumber
-    # print("花瓶圖片連結列表: " , len(vaseImgUrlList))
-    # print("花瓶資訊列表2(已經處理過): " , vaseInfor3)
-    print("_ID: " , vaseInfor3['_id'])
-    print("連結: " , vaseInfor3['URL'])
-    print("商品名稱: " , vaseInfor3['name'])
-    print("價格: " , vaseInfor3['price'])
-    print("商品ID: " , vaseInfor3['id'])
-    print("圖片路徑: " , vaseInfor3['imgPath'])
-    print("圖片網址: " , vaseInfor3['imgURL'])
 
-    # request.urlretrieve(vaseInfor3['imgURL'], vaseInfor3['imgPath'])  # 抓取圖片，要抓圖時記得打開
 
-    # print('='*10)
+# # 檢查資料用
+# for vaseInfor3 in vaseInforList2:
+#     idNumber += 1
+#     vaseInfor3['_id'] = idNumber
+#     # print("花瓶圖片連結列表: " , len(vaseImgUrlList))
+#     # print("花瓶資訊列表2(已經處理過): " , vaseInfor3)
+#     print("_ID: " , vaseInfor3['_id'])
+#     print("連結: " , vaseInfor3['URL'])
+#     print("商品名稱: " , vaseInfor3['name'])
+#     print("價格: " , vaseInfor3['price'])
+#     print("商品ID: " , vaseInfor3['id'])
+#     print("圖片路徑: " , vaseInfor3['imgPath'])
+#     print("圖片網址: " , vaseInfor3['imgURL'])
+#     # print("訓練用圖片檔名路徑: ", vaseInfor3['ForTrainNamePath'])
+#
+#     # request.urlretrieve(vaseInfor3['imgURL'], vaseInfor3['imgPath'])  # 抓取圖片，要抓圖時記得打開
+#     # request.urlretrieve(vaseInfor3['imgURL'], vaseInfor3['ForTrainNamePath'])  # 抓取圖片，要抓圖時記得打開(訓練用圖片檔名)
+#
+#     print('='*10)
 
 
 # try:

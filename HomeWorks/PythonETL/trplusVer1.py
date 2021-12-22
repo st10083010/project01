@@ -73,7 +73,12 @@ for vaseInforLink in tqdm(vaseLinkList):
         imgNumber += 1
         imgURL3 = imgURL2['src'].replace('96x96' , '300x300') # 更改解析度
         imgName = itemName2 + "_{}_{}.{}".format(itemDict['productID'], imgNumber , imgURL3.split('.')[-1])
+
+        anotherImgName = "trplusVASE_{}_{}.{}".format(itemDict['productID'], imgNumber , imgURL3.split('.')[-1])
+        anotherImgNameAndPath = folderPath + "//" +anotherImgName # 訓練用圖片檔名
+
         # request.urlretrieve(imgURL3, filename=folderPath + "//" + imgName) # 要抓圖片再打開
+        # request.urlretrieve(imgURL3, anotherImgNameAndPath) # 要抓圖片再打開(訓練用圖片檔名)
 
     imgPath = folderPath + "//"+ imgName
     itemDict['imgPath'] = imgPath

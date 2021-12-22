@@ -48,6 +48,9 @@ for i in range(0,3):
             imgPathName = folderPath + "//" + itemPath + "_{}.{}".format(itemInforDict['productID'], imgFormat.split(".")[-1])
             idNumber += 1
 
+            imgAnotherName = folderPath + "//" + "{}.{}".format(itemInforDict['productID'], imgFormat.split(".")[-1])
+            # 訓練用圖片檔名
+
             #
             print("編號: ", itemInforDict['_id'])
             print("商品名稱: ", itemInforDict['name'])
@@ -55,10 +58,12 @@ for i in range(0,3):
             print("商品價格: ", itemInforDict['offers']['price'])
             print("商品連結: ", itemInforDict['offers']['url'])
             print("存放路徑: ", folderPath + "//" + itemPath + "_{}.{}".format(itemInforDict['productID'], imgFormat.split(".")[-1]))
-
+            print("模型用圖片檔名: ", imgAnotherName)
             print("商品圖片: ", imgFormat) # itemInforDict['image']
             print('='*10)
-            # request.urlretrieve(imgFormat, imgPathName) # 要抓圖片再打開
+
+            # request.urlretrieve(imgFormat, imgPathName) # 要抓圖片再打開(普通存圖)
+            # request.urlretrieve(imgFormat, imgAnotherName) # 要抓圖片再打開(訓練用圖片檔名)
 
             newItemInforDict['_id'] = itemInforDict['_id'] # 編號
             newItemInforDict['name'] = itemInforDict['name'] # 商品名稱
