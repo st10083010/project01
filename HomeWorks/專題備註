@@ -25,7 +25,7 @@ https://linuxpip.org/json-eof-fix/
 MongoDB資料匯出匯入參考:
 https://iter01.com/176368.html
 
-桶子:ikea、pinkoi
+桶子:ikea、pinkoi、trplus
 
 MySQL資料匯入:
 把mongoDB輸出出來的JSON檔案，對著建好的table按右鍵匯入
@@ -42,4 +42,6 @@ ikeaVer10進度:
 只剩把資料重新塞進mongoDB -> MySQL -> FLASK -> OK
 
 mongoexport -d pinkoi -c pinkoi -o "C:\Users\TibeMe_user\Desktop\pinkoiJson2.json" -f "_id,name,productID,price,URL,imgPath" --jsonArray
+---
+資料庫操作走內部IP(虛擬機)
 
