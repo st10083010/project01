@@ -17,13 +17,13 @@ for i in range(1,101):
     random6 = round((random.randint(0, 250))*randomProportion[5])
     random7 = round((random.randint(0, 250))*randomProportion[6])
     clickDict['userID'] = "2021" + str(i).zfill(4)
-    clickDict['相框'] = random1
-    clickDict['椅凳'] = random2
-    clickDict['檯燈'] = random3
-    clickDict['書桌'] = random4
-    clickDict['靠枕'] = random5
-    clickDict['花瓶'] = random6
-    clickDict['馬克杯'] = random7
+    clickDict['Photo_Frame'] = random1 # 相框
+    clickDict['Chair_Stool'] = random2 # 椅凳
+    clickDict['Desk_Lamp'] = random3 # 檯燈
+    clickDict['Desk'] = random4 # 書桌
+    clickDict['Pillow'] = random5 # 靠枕
+    clickDict['Vase'] = random6 # 花瓶
+    clickDict['Mug'] = random7 # 馬克杯
     # print(clickDict)
     # print('='*10)
 
