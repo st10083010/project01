@@ -1,9 +1,10 @@
-import random, string, time
+import random, string, time, json, os
 # ID 1~671
 # 完成
-member_Infor = {"userID": None, "username": None, "email": None,
-    "password": None, "sex": None, "age": None, "area": None,"career": None}
-# 單筆會員
+
+file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\member_builder.json"
+
+
 
 member_Infor_List = []
 # 全部會員
@@ -25,8 +26,12 @@ startID = 1
 start = time.time()
 
 for i in range(members_total):
+    member_Infor = {"userID": None, "username": None, "email": None,
+                    "password": None, "sex": None, "age": None, "area": None, "career": None}
+    # 單筆會員
+
     length_of_password = random.randrange(4, 13) # 密碼長度
-    userID = str(startID).zfill(4)
+    userID = startID
     randomNumber = random.randrange(1000, 10000) # 輔助email避免重複
     password = ''.join(
         random.SystemRandom().choice(string.ascii_letters + string.digits) for a in range(length_of_password)) # 大小寫英數混合 長度在4~12
@@ -52,7 +57,10 @@ for i in range(members_total):
     member_Infor['area'] = area
     member_Infor['career'] = carrer
 
-    member_Infor_List.append(member_Infor)
+    if member_Infor in member_Infor_List:
+        pass
+    else:
+       member_Infor_List.append(member_Infor)
 
 #-----------檢查資料-------
     # print(userID)
@@ -64,11 +72,15 @@ for i in range(members_total):
     # print(age)
     # print(area)
     # print(carrer)
-    print(member_Infor)
-    print('='*10)
+    # print(member_Infor)
+    # print('='*10)
 
 end = time.time()
-print(len(member_Infor_List))
+
+# with open(file, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
+#     json.dump(member_Infor_List, f)
+
+print(member_Infor_List)
 print("花費時間: " + str(end - start) + " 秒")
 
 # 備註:
