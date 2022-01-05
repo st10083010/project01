@@ -1,10 +1,9 @@
-import random, string, time, json, name_list
+import random, string, time, json, name_list, csv
 # ID 1~671
 # 完成
 
 file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\member_builder.json"
-
-
+file_csv = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\member_builder.csv"
 member_Infor_List = []
 # 全部會員
 
@@ -81,6 +80,11 @@ end = time.time()
 
 # with open(file, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
 #     json.dump(member_Infor_List, f)
+
+# with open(file_csv, "w", encoding='utf-8') as f: # # 負責檔案寫入到指定路徑，要用再打開，轉CSV)
+#     w = csv.writer(f)
+#     data = member_Infor_List
+#     w.writerow(data)
 
 # print(member_Infor_List)
 print("花費時間: " + str(end - start) + " 秒")
