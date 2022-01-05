@@ -44,4 +44,10 @@ ikeaVer10進度:
 mongoexport -d pinkoi -c pinkoi -o "C:\Users\TibeMe_user\Desktop\pinkoiJson2.json" -f "_id,name,productID,price,URL,imgPath" --jsonArray
 ---
 資料庫操作走內部IP(虛擬機)
+---
+selenium
+官方文件
+https://www.selenium.dev/selenium/docs/api/py/api.html
 
+中文
+https://selenium-python-zh.readthedocs.io/en/latest/
