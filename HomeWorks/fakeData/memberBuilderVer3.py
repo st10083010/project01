@@ -1,9 +1,8 @@
-import random, string, time, json, os
+import random, string, time, json, name_list
 # ID 1~671
 # 完成
 
 file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\member_builder.json"
-
 
 
 member_Infor_List = []
@@ -11,8 +10,11 @@ member_Infor_List = []
 
 members_total = 671
 # 會員總數
-male_name_list = ["Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie", "Oscar"]
-female_name_list = ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace"]
+
+# male_name_list = ["Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie", "Freddie", "Oscar"]
+# female_name_list = ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace"]
+maleNL = name_list.male_name_LIST
+femaleNL = name_list.female_name_LIST
 
 email_selector = ["yahoo", "hotmail", "gmail"]
 taiwan = ["臺北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市", 
@@ -40,10 +42,10 @@ for i in range(members_total):
     area = random.choice(taiwan)
     carrer = random.choice(carrer_selector)
     if sex == "male":
-        userName = random.choice(male_name_list)
+        userName = random.choice(maleNL)
         email = userName + str(randomNumber) + "@" + random.choice(email_selector) + ".com.tw"
     else:
-        userName = random.choice(female_name_list)
+        userName = random.choice(femaleNL)
         email = userName + str(randomNumber) + "@" + random.choice(email_selector) + ".com.tw"
 
     startID += 1
@@ -72,15 +74,15 @@ for i in range(members_total):
     # print(age)
     # print(area)
     # print(carrer)
-    # print(member_Infor)
-    # print('='*10)
+    print(member_Infor)
+    print('='*10)
 
 end = time.time()
 
 # with open(file, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
 #     json.dump(member_Infor_List, f)
 
-print(member_Infor_List)
+# print(member_Infor_List)
 print("花費時間: " + str(end - start) + " 秒")
 
 # 備註:
