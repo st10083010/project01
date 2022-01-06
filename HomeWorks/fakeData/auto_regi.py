@@ -1,10 +1,6 @@
-# python -m playwright codegen --target python -o auto_regi.py -b chromium http://127.0.0.1:5000/register.html
-# 錄製腳本(自動產生程式碼)                          -o  (檔名)        (開啟的瀏覽器) (目標網址)
-
-# 執行腳本 python (檔名.py)
-
 from playwright.sync_api import Playwright, sync_playwright
-
+import random, string, name_list
+from time import sleep
 
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
@@ -17,7 +13,10 @@ def run(playwright: Playwright) -> None:
     page.goto("http://127.0.0.1:5000/register.html")
 
     # Fill [placeholder="Enter Your Email"]
-    page.fill("[placeholder=\"Enter Your Email\"]", "hfoqi@yaohh.com.tw")
+    page.fill("[placeholder=\"Enter Your Email\"]", "fefgcvg@hohoca.com.tw")
+
+    # Click text=Sex: 男女
+    page.click("text=Sex: 男女")
 
     # Select female
     page.select_option("select[name=\"sex\"]", "female")
@@ -26,7 +25,7 @@ def run(playwright: Playwright) -> None:
     page.click("[placeholder=\"Enter Your Age\"]")
 
     # Fill [placeholder="Enter Your Age"]
-    page.fill("[placeholder=\"Enter Your Age\"]", "19")
+    page.fill("[placeholder=\"Enter Your Age\"]", "59")
 
     # Click input[name="area"]
     page.click("input[name=\"area\"]")
@@ -40,8 +39,17 @@ def run(playwright: Playwright) -> None:
     # Fill [placeholder="Enter Your Career"]
     page.fill("[placeholder=\"Enter Your Career\"]", "其他")
 
-    # Go to http://127.0.0.1:5000/register.html
-    page.goto("http://127.0.0.1:5000/register.html")
+    # Click text=Create your account
+    page.click("text=Create your account")
+    # assert page.url == "http://127.0.0.1:5000/index.html"
+
+    # Click text=Logout
+    page.click("text=Logout")
+    # assert page.url == "chrome-error://chromewebdata/"
+
+    # Click text=重新載入
+    page.click("text=重新載入")
+    # assert page.url == "http://127.0.0.1:5000/register.html"
 
     # ---------------------
     context.close()

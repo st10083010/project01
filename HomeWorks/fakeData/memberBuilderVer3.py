@@ -24,7 +24,7 @@ carrer_selector = ["農、林、漁、牧業", "製造業", "批發及零售業"
     "出版影音及資通訊業", "金融及保險業", "教育業", "醫療保健及社會工作服務業", "藝術、娛樂及休閒服務業", "其他"]
 
 startID = 1
-start = time.time()
+# start = time.time() # 程式開始計時
 
 for i in range(members_total):
     member_Infor = {"userID": None, "username": None, "email": None,
@@ -61,7 +61,7 @@ for i in range(members_total):
     if member_Infor in member_Infor_List:
         pass
     else:
-       member_Infor_List.append(member_Infor)
+       member_Infor_List.append(member_Infor) # 程式結束
 
 #-----------檢查資料-------
     # print(userID)
@@ -72,12 +72,13 @@ for i in range(members_total):
     # print(sex)
     # print(age)
     # print(area)
-    # print(carrer)
-    print(member_Infor)
-    print('='*10)
+    # # print(carrer)
+    # print(member_Infor)
+    # print('='*10)
 
-end = time.time()
-
+# end = time.time() # 程式結束時的時間
+# --------------------------------------------------
+# 輸出JSON/CSV
 # with open(file, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
 #     json.dump(member_Infor_List, f)
 
@@ -87,7 +88,8 @@ end = time.time()
 #     w.writerow(data)
 
 # print(member_Infor_List)
-print("花費時間: " + str(end - start) + " 秒")
+# --------------------------------------------------
+# print("花費時間: " + str(end - start) + " 秒")
 
 # 備註:
 # 密碼生成參考資料:https://www.delftstack.com/zh-tw/howto/python/random-string-python/
