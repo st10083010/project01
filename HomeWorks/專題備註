@@ -47,6 +47,17 @@ mongoexport -d pinkoi -c pinkoi -o "C:\Users\TibeMe_user\Desktop\pinkoiJson2.jso
 ---
 playwright
 https://blog.jiatool.com/posts/playwright/
+
+---
+連上DB
+.env格式改掉
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{}:{}@{}:3306/{}".format(
+        os.getenv("DB_USER"),
+        os.getenv("DB_PASSWORD"),
+        os.getenv("DB_HOST"),
+        os.getenv("DB_NAME"))
 ---
 selenium(廢棄，改用playwright)
 官方文件

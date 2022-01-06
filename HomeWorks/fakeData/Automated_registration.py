@@ -1,5 +1,5 @@
-# python -m playwright codegen --target python -o test1.py -b chromium http://127.0.0.1:5000/register.html
-# 錄製腳本(自動產生程式碼)                            (檔名)        (開啟的瀏覽器) (目標網址)
+# python -m playwright codegen --target python -o test1.py -b chromium https://www.google.com.tw/
+# 錄製腳本(自動產生程式碼)                          -o  (檔名)        (開啟的瀏覽器) (目標網址)
 
 # 執行腳本 python (檔名.py)
 
