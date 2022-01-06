@@ -1,24 +1,9 @@
-# for test
-from selenium.webdriver import Edge
-from time import sleep
-import time
+from playwright.sync_api import sync_playwright
 
- # import時注意瀏覽器開頭大小寫
-
-driver = Edge('./msedgedriver.exe')
-# url = 'https://www.google.com.tw/'http://127.0.0.1:5000/register.html
-url = 'http://127.0.0.1:5000/register.html'
-
-
-driver.get(url)
-
-username = Edge.find_element()
-
-# //*[@id="username_r"]
-# //*[@id="password_r"]
-# //*[@id="email"]
-# //*[@id="sex"]
-# //*[@id="age"]
-# //*[@id="area"]
-# //*[@id="career"]
-# //*[@id="submit_r"]
+with sync_playwright() as p:
+    # browser = p.chromium.launch()
+    browser = p.chromium.launch(headless=False)
+    page = browser.new_page()
+    page.goto("http://playwright.dev")
+    print(page.title())
+    browser.close()

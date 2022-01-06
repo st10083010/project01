@@ -45,7 +45,10 @@ mongoexport -d pinkoi -c pinkoi -o "C:\Users\TibeMe_user\Desktop\pinkoiJson2.jso
 ---
 資料庫操作走內部IP(虛擬機)
 ---
-selenium
+playwright
+https://blog.jiatool.com/posts/playwright/
+---
+selenium(廢棄，改用playwright)
 官方文件
 https://www.selenium.dev/selenium/docs/api/py/api.html
 
