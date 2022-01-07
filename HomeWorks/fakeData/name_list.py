@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 
 
-start = time.time()
+# start = time.time()
 
 
 male_name_url = 'https://www.yces.chc.edu.tw/english/engboyname-all.htm'
@@ -128,7 +128,7 @@ female_name_LIST = ['Abigail', 'Ada', 'Agatha', 'Adelaide', 'Adelina', 'Alethea'
 # print(len((female_name_LIST)))
 
 # 在網路上找出資料，處理過後轉成CSV，將輸出的結果複製改掉原本的空LIST，讓別的檔案import
-#--------------------------------------------------
-end = time.time()
-spendTime = end - start
-print('花費時間: ' + str(spendTime) + '秒')
+# #--------------------------------------------------
+# end = time.time()
+# spendTime = end - start
+# print('花費時間: ' + str(spendTime) + '秒')

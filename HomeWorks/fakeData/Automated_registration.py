@@ -118,13 +118,13 @@ for i in tqdm(range(total_member)):
         run(playwright)
 
 # # 輸出JSON/CSV
-with open(file_for_json, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
-    json.dump(members_accountNpw_list, f)
-
-with open(file_for_csv, "w", encoding='utf-8') as f: # # 負責檔案寫入到指定路徑，要用再打開，轉CSV)
-    w = csv.writer(f)
-    data = members_accountNpw_list
-    w.writerow(data)
+# with open(file_for_json, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
+#     json.dump(members_accountNpw_list, f)
+#
+# with open(file_for_csv, "w", encoding='utf-8') as f: # # 負責檔案寫入到指定路徑，要用再打開，轉CSV)
+#     w = csv.writer(f)
+#     data = members_accountNpw_list
+#     w.writerow(data)
 
 
 end = time.time()
