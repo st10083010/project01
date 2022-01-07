@@ -3,9 +3,13 @@ import time, name_list, random, string, csv, json
 from time import sleep
 from tqdm import tqdm, trange
 # 自動註冊 腳本
-taiwan = ["臺北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市",
-    "宜蘭縣", "新竹縣", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", "屏東縣", "花蓮縣", "臺東縣", "澎湖縣",
-    "基隆市", "新竹市", "嘉義市"]
+taiwan = ['Taipei_City', 'New_Taipei_City', 'Keelung_City',
+                                         'Taoyuan_City','Hsinchu_County','Hsinchu_City','Miaoli_City',
+                                         'Miaoli_County','Taichung_City','Changhua_County','Changhua_City',
+                                         'Nantou_City','Nantou_County','Yunlin_County','Chiayi_County',
+                                         'Chiayi_City','Tainan_City','Kaohsiung_City','Pingtung_County',
+                                         'Pingtung_City','Yilan_County','Yilan_City','Hualien_County',
+                                         'Hualien_City','Taitung_City','Taitung_County']
 
 carrer_selector = ["農、林、漁、牧業", "製造業", "批發及零售業", "運輸及倉儲業", "住宿及餐飲業",
     "出版影音及資通訊業", "金融及保險業", "教育業", "醫療保健及社會工作服務業", "藝術、娛樂及休閒服務業", "其他"]
@@ -15,7 +19,7 @@ femaleNL = name_list.female_name_LIST
 
 email_selector = ["yahoo", "hotmail", "gmail"]
 
-total_member = 671 # 會員總數
+total_member = 3 # 會員總數
 members_accountNpw_list = [] # 全部的會員帳號+密碼資料
 
 file_for_json = r'C:\Users\TibeMe_user\Desktop\專題正本\project01\HomeWorks\fakeData\membersForAuto.json'
@@ -87,17 +91,11 @@ for i in tqdm(range(total_member)):
         # Fill [placeholder="Enter Your Age"]
         page.fill("[id=\"age\"]", age)
 
-        # Click input[name="area"]
-        page.click("input[name=\"area\"]")
-
         # Fill input[name="area"]
-        page.fill("input[name=\"area\"]", area)
-
-        # Click [placeholder="Enter Your Career"]
-        page.click("[placeholder=\"Enter Your Career\"]")
+        page.select_option("select[id=\"area\"]", area)
 
         # Fill [placeholder="Enter Your Career"]
-        page.fill("[placeholder=\"Enter Your Career\"]", carrer)
+        page.select_option("select[id=\"career\"]", carrer)
 
         # Click text=Create your account
         page.click("text=Create your account")
