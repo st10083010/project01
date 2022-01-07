@@ -1,6 +1,7 @@
 from playwright.sync_api import Playwright, sync_playwright
 import time, name_list, random, string, csv, json
 from time import sleep
+from tqdm import tqdm, trange
 # 自動註冊 腳本
 taiwan = ["臺北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市",
     "宜蘭縣", "新竹縣", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", "屏東縣", "花蓮縣", "臺東縣", "澎湖縣",
@@ -20,13 +21,17 @@ members_accountNpw_list = [] # 全部的會員帳號+密碼資料
 file_for_json = r'C:\Users\TibeMe_user\Desktop\專題正本\project01\HomeWorks\fakeData\membersForAuto.json'
 file_for_csv = r'C:\Users\TibeMe_user\Desktop\專題正本\project01\HomeWorks\fakeData\membersForAuto.csv'
 
+start = time.time()
 
-for i in range(total_member):
+for i in tqdm(range(total_member)):
     sleepTime = random.uniform(1.0,3.0)
     ac_and_pw = {} # 單筆會員的帳號密碼
 
     length_of_password = random.randrange(4, 13)  # 密碼長度
+
     randomNumber = random.randrange(1000, 10000)  # 輔助email避免重複
+    userName_randomNumber = random.randint(1, 10000) # 輔助使用者名稱避免重複
+
     password = ''.join(
         random.SystemRandom().choice(string.ascii_letters + string.digits) for a in
         range(length_of_password))  # 大小寫英數混合 長度在4~12
@@ -35,10 +40,10 @@ for i in range(total_member):
     area = random.choice(taiwan)
     carrer = random.choice(carrer_selector)
     if sex == "male":
-        userName = random.choice(maleNL) + '{}'.format(random.randint(1, 10))
+        userName = random.choice(maleNL) + '{}'.format(userName_randomNumber)
         email = userName + str(randomNumber) + "@" + random.choice(email_selector) + ".com.tw"
     else:
-        userName = random.choice(femaleNL) + '{}'.format(random.randint(1, 10))
+        userName = random.choice(femaleNL) + '{}'.format(userName_randomNumber)
         email = userName + str(randomNumber) + "@" + random.choice(email_selector) + ".com.tw"
 
     ac_and_pw['account'] = userName
@@ -121,5 +126,8 @@ with open(file_for_csv, "w", encoding='utf-8') as f: # # 負責檔案寫入到�
     data = members_accountNpw_list
     w.writerow(data)
 
+
+end = time.time()
+print("花費時間: " + str(end - start) + "秒")
 
 
