@@ -1,12 +1,13 @@
 # 點擊率產生器
 import json , random , csv
 
-file = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\click.json"
+file_json = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\click.json"
+file_csv = "C:\\Users\\TibeMe_user\\Desktop\\專題正本\\project01\\HomeWorks\\fakeData\\click.csv"
 
 click = []
 proportion =[0, 0.1 ,0.15 , 0.4 , 0.25 , 0.07 , 0.03]
 
-for i in range(1,101):
+for i in range(1,672):
     clickDict = {}
     randomProportion = random.sample(proportion, len(proportion))
     random1 = round((random.randint(0, 250))*randomProportion[0])
@@ -16,7 +17,7 @@ for i in range(1,101):
     random5 = round((random.randint(0, 250))*randomProportion[4])
     random6 = round((random.randint(0, 250))*randomProportion[5])
     random7 = round((random.randint(0, 250))*randomProportion[6])
-    clickDict['userID'] = "2021" + str(i).zfill(4)
+    clickDict['ID'] = str(i).zfill(4)
     clickDict['Photo_Frame'] = random1 # 相框
     clickDict['Chair_Stool'] = random2 # 椅凳
     clickDict['Desk_Lamp'] = random3 # 檯燈
@@ -37,7 +38,12 @@ for i in range(1,101):
 
 
 
-# with open(file, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
+# with open(file_json, "w", encoding="utf-8") as f: # 負責檔案寫入到指定路徑，要用再打開，轉JSON)
 #     json.dump(click, f)
+#
+# with open(file_csv, "w", encoding='utf-8') as f: # # 負責檔案寫入到指定路徑，要用再打開，轉CSV)
+#     w = csv.writer(f)
+#     data = click
+#     w.writerow(data)
 
 
